@@ -16,13 +16,13 @@ public class Example_1_1
     	try {
     		DisplayMode mode = new DisplayMode(width, height);
     		Display.setDisplayMode(mode);
-            	Display.create();
-            	Display.setTitle(title);
-        	} catch (LWJGLException e) {
-        		e.printStackTrace();
-        	}
-        	GL11.glViewport(0,0, width, height);
+        	Display.create();
+        	Display.setTitle(title);
+    	} catch (LWJGLException e) {
+    		e.printStackTrace();
     	}
+    	GL11.glViewport(0,0, width, height);
+	}
     
     public Example_1_1() {
     	createWindow(WIDTH, HEIGHT, TITLE);
