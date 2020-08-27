@@ -5,6 +5,9 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 
+// Using this we don't have to write GL11. everywhere.
+// import static org.lwjgl.opengl.GL11.*;
+
 public class Example_1_2
 {
 	public static final int WIDTH = 1080;
