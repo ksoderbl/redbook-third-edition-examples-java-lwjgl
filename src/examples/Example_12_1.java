@@ -8,7 +8,6 @@ import org.lwjgl.LWJGLException;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.GLU;
 
 // Using this we don't have to write GL11. everywhere.
 // import static org.lwjgl.opengl.GL11.*;
