@@ -90,11 +90,25 @@ public class Example_7_1
     
     public void keyboard() {
         if (Keyboard.isKeyDown(Keyboard.KEY_X)) {
-            GL11.glRotatef(2f, 1.0f, 0.0f, 0.0f);
+            GL11.glRotatef( 2f, 1.0f, 0.0f, 0.0f);
         }
+        if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+            GL11.glRotatef(-2f, 1.0f, 0.0f, 0.0f);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+            GL11.glRotatef( 2f, 1.0f, 0.0f, 0.0f);
+        }
+
         if (Keyboard.isKeyDown(Keyboard.KEY_Y)) {
             GL11.glRotatef(2f, 0.0f, 1.0f, 0.0f);
         }
+        if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+            GL11.glRotatef(-2f, 0.0f, 1.0f, 0.0f);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+            GL11.glRotatef(2f, 0.0f, 1.0f, 0.0f);
+        }
+
         if (Keyboard.isKeyDown(Keyboard.KEY_I)) {
             GL11.glLoadIdentity();
             GLU.gluLookAt(0f, 0f, 10f, 0f, 0f, 0f, 0f, 1f, 0f);
