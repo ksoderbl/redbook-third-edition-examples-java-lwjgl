@@ -59,6 +59,9 @@ public class Example_5_1
         GL11.glEnable(GL11.GL_LIGHTING);
         GL11.glEnable(GL11.GL_LIGHT0);
         GL11.glEnable(GL11.GL_DEPTH_TEST);
+
+        // useful?
+        GL11.glEnable(GL11.GL_NORMALIZE);
     }
 
     
@@ -69,7 +72,7 @@ public class Example_5_1
 //    stacks
 //    The number of subdivisions along the Z axis (similar to lines of latitude). 
     public void solidSphere(double radius, int slices, int stacks) {
-        float w2 = (float)radius;
+        float w2 = 1.0f;
         GL11.glBegin(GL11.GL_LINE_LOOP);
         GL11.glVertex3f(w2, w2, w2);
         GL11.glVertex3f(w2, -w2, w2);
@@ -147,7 +150,10 @@ public class Example_5_1
                     double y = radius * Math.sin(t * twopi / slices) * Math.sin(s * twopi / stacks);
                     double z = radius * Math.cos(s * twopi / stacks);
                     
-                    GL11.glNormal3d(x, y, z);
+                    // Length of vector (x, y, z) equals radius, thefore divide each of x, y and z in the glNormal3d
+                    // by radius.
+                    
+                    GL11.glNormal3d(x / radius, y / radius, z / radius);
                     GL11.glVertex3d(x, y, z);
                     
                 }
@@ -160,7 +166,7 @@ public class Example_5_1
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         //GL11.glLoadIdentity();
         //GLU.gluLookAt(2.0f, 2.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        solidSphere(1, 60, 60);
+        solidSphere(1.0, 60, 60);
         GL11.glFlush();
     }
     
