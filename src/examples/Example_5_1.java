@@ -71,28 +71,28 @@ public class Example_5_1
     public void solidSphere(double radius, int slices, int stacks) {
         float w2 = (float)radius;
         GL11.glBegin(GL11.GL_LINE_LOOP);
-        GL11.glVertex3f(w2, w2, 2*w2);
-        GL11.glVertex3f(w2, -w2, 2*w2);
-        GL11.glVertex3f(-w2, -w2, 2*w2);
-        GL11.glVertex3f(-w2, w2, 2*w2);
+        GL11.glVertex3f(w2, w2, w2);
+        GL11.glVertex3f(w2, -w2, w2);
+        GL11.glVertex3f(-w2, -w2, w2);
+        GL11.glVertex3f(-w2, w2, w2);
         GL11.glEnd();
         
         GL11.glBegin(GL11.GL_LINE_LOOP);
-        GL11.glVertex3f(w2, w2, -2*w2);
-        GL11.glVertex3f(w2, -w2, -2*w2);
-        GL11.glVertex3f(-w2, -w2, -2*w2);
-        GL11.glVertex3f(-w2, w2, -2*w2);
+        GL11.glVertex3f(w2, w2, -w2);
+        GL11.glVertex3f(w2, -w2, -w2);
+        GL11.glVertex3f(-w2, -w2, -w2);
+        GL11.glVertex3f(-w2, w2, -w2);
         GL11.glEnd();
 
         GL11.glBegin(GL11.GL_LINES);
-        GL11.glVertex3f(w2, w2, 2*w2);
-        GL11.glVertex3f(w2, w2, -2*w2);
-        GL11.glVertex3f(w2, -w2, 2*w2);
-        GL11.glVertex3f(w2, -w2, -2*w2);
-        GL11.glVertex3f(-w2, -w2, 2*w2);
-        GL11.glVertex3f(-w2, -w2, -2*w2);
-        GL11.glVertex3f(-w2, w2, 2*w2);
-        GL11.glVertex3f(-w2, w2, -2*w2);
+        GL11.glVertex3f(w2, w2, w2);
+        GL11.glVertex3f(w2, w2, -w2);
+        GL11.glVertex3f(w2, -w2, w2);
+        GL11.glVertex3f(w2, -w2, -w2);
+        GL11.glVertex3f(-w2, -w2, w2);
+        GL11.glVertex3f(-w2, -w2, -w2);
+        GL11.glVertex3f(-w2, w2, w2);
+        GL11.glVertex3f(-w2, w2, -w2);
         GL11.glEnd();
         
         double twopi = 2 * Math.PI;
@@ -160,7 +160,7 @@ public class Example_5_1
         GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
         //GL11.glLoadIdentity();
         //GLU.gluLookAt(2.0f, 2.0f, 5.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-        solidSphere(0.75, 20, 16);
+        solidSphere(1, 60, 60);
         GL11.glFlush();
     }
     
