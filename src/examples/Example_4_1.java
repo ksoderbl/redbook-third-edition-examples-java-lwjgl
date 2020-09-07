@@ -21,21 +21,6 @@ public class Example_4_1
     public static final String TITLE = "Example 4-1: Drawing a Smooth-Shaded Triangle";
     public static final int FPS_CAP = 60;
 
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-
 //    public ByteBuffer makeByteBuffer(byte[] array) {
 //        ByteBuffer buffer = BufferUtils.createByteBuffer(array.length);
 //        buffer.put(array);
@@ -90,7 +75,8 @@ public class Example_4_1
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {
@@ -98,12 +84,12 @@ public class Example_4_1
 
             mouse();
             keyboard();
-            
-            display();
-            
+
             if (Display.wasResized()) {
                 reshape(Display.getWidth(), Display.getHeight());
             }
+            
+            display();
             
             Display.update();
         }

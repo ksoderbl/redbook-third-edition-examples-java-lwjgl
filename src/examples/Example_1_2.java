@@ -15,20 +15,6 @@ public class Example_1_2
     public static final String TITLE = "Example 1-2: White Rectangle on a Black Background, improved";
     public static final int FPS_CAP = 60;
 
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        GL11.glViewport(0,0, width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-    
     public void init() {
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
@@ -49,9 +35,11 @@ public class Example_1_2
     }
     
     public Example_1_2() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
         init();
-
+    }
+    
+    public void start() {
         while (!Display.isCloseRequested()) {
             display();
             Display.update();
@@ -63,5 +51,6 @@ public class Example_1_2
     
     public static void main(String[] args) {
         Example_1_2 example = new Example_1_2();
+        example.start();
     }
 }

@@ -23,21 +23,6 @@ public class Example_6_1
     private boolean leftFirst = true;
     private boolean keyTIsDown = false;
    
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-    
     public void init() {
         GL11.glEnable(GL11.GL_BLEND);
         GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
@@ -124,7 +109,8 @@ public class Example_6_1
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {
@@ -133,11 +119,11 @@ public class Example_6_1
             mouse();
             keyboard();
             
-            display();
-            
             if (Display.wasResized()) {
                 reshape(Display.getWidth(), Display.getHeight());
             }
+
+            display();
             
             Display.update();
         }

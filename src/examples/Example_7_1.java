@@ -22,21 +22,6 @@ public class Example_7_1
     public static final int FPS_CAP = 60;
 
     private int theTorus;
-   
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
 
 //    public ByteBuffer makeByteBuffer(byte[] array) {
 //        ByteBuffer buffer = BufferUtils.createByteBuffer(array.length);
@@ -132,7 +117,8 @@ public class Example_7_1
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {

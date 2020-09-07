@@ -18,21 +18,6 @@ public class Example_1_3
     
     private float spinAngle = 0.0f;
 
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-    
     public void init() {
         GL11.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         GL11.glShadeModel(GL11.GL_FLAT);
@@ -64,13 +49,12 @@ public class Example_1_3
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {
             Display.sync(FPS_CAP);
-            
-            display();
             
             if (!Mouse.isButtonDown(0)) {
                 spinDisplay();
@@ -79,6 +63,8 @@ public class Example_1_3
             if (Display.wasResized()) {
                 reshape(Display.getWidth(), Display.getHeight());
             }
+
+            display();
             
             Display.update();
         }

@@ -26,21 +26,6 @@ public class Example_12_1
             4.0f,  4.0f, 0.0f
     };
     
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-    
     public void init() {
         FloatBuffer points = BufferUtils.createFloatBuffer(ctrlPoints.length);
         points.put(ctrlPoints);
@@ -89,20 +74,18 @@ public class Example_12_1
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {
             Display.sync(FPS_CAP);
             
-            display();
-            
-//            if (!Mouse.isButtonDown(0)) {
-//            }
-            
             if (Display.wasResized()) {
                 reshape(Display.getWidth(), Display.getHeight());
             }
+
+            display();
             
             Display.update();
         }

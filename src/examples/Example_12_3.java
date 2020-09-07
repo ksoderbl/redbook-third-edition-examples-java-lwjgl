@@ -30,21 +30,6 @@ public class Example_12_3
          0.5f,  1.5f,  0.0f,  1.5f,  1.5f, -1.0f
     };
     
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-    
     public void init() {
         FloatBuffer points = BufferUtils.createFloatBuffer(ctrlPoints.length);
         points.put(ctrlPoints);
@@ -99,7 +84,7 @@ public class Example_12_3
         GL11.glViewport(0,0, w, h);
         GL11.glMatrixMode(GL11.GL_PROJECTION);
         GL11.glLoadIdentity();
-        double d = 8.0;
+        double d = 6.0;
 //        if (w <= h) {
             GL11.glOrtho(-d, d, -d * fh / fw, d * fh / fw, -d, d);
 //        }
@@ -111,21 +96,19 @@ public class Example_12_3
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {
             Display.sync(FPS_CAP);
             
-            display();
-            
-//            if (!Mouse.isButtonDown(0)) {
-//            }
-            
             if (Display.wasResized()) {
                 reshape(Display.getWidth(), Display.getHeight());
             }
-            
+
+            display();
+
             Display.update();
         }
         

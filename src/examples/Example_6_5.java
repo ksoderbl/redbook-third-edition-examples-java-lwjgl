@@ -23,21 +23,6 @@ public class Example_6_5
     
     private int fogMode;
     private boolean keyFIsDown = false;
-    
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
 
     public FloatBuffer makeFloatBuffer(float[] array) {
         FloatBuffer buffer = BufferUtils.createFloatBuffer(array.length);
@@ -209,7 +194,8 @@ public class Example_6_5
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {

@@ -17,21 +17,6 @@ public class Example_3_1
     public static final String TITLE = "Example 3-1: Transformed Cube";
     public static final int FPS_CAP = 60;
     
-    public void createWindow(int width, int height, String title) {
-        try {
-            DisplayMode mode = new DisplayMode(width, height);
-            Display.setDisplayMode(mode);
-            Display.setResizable(true);
-            Display.create();
-            Display.setTitle(title);
-        } catch (LWJGLException e) {
-            e.printStackTrace();
-            System.exit(1);
-        }
-        reshape(width, height);
-        System.out.println(GL11.glGetString(GL11.GL_VERSION));
-    }
-    
     public void wireCube(float width) {
         float w2 = width / 2.0f;
         GL11.glBegin(GL11.GL_LINE_LOOP);
@@ -84,20 +69,18 @@ public class Example_3_1
     }
     
     public void start() {
-        createWindow(WIDTH, HEIGHT, TITLE);
+        Window window = new Window(WIDTH, HEIGHT, TITLE);
+        reshape(window.getWidth(), window.getHeight());
         init();
 
         while (!Display.isCloseRequested()) {
             Display.sync(FPS_CAP);
             
-            display();
-            
-//            if (!Mouse.isButtonDown(0)) {
-//            }
-            
             if (Display.wasResized()) {
                 reshape(Display.getWidth(), Display.getHeight());
             }
+
+            display();
             
             Display.update();
         }
