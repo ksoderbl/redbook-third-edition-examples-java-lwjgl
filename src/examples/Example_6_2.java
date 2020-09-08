@@ -27,7 +27,7 @@ public class Example_6_2
     private float transparentZ = MINZ;
     private int sphereList;
     private int cubeList;
-    private boolean animation = false;
+    private boolean animation = true;
     
     public FloatBuffer makeFloatBuffer(float[] array) {
         FloatBuffer buffer = BufferUtils.createFloatBuffer(array.length);
